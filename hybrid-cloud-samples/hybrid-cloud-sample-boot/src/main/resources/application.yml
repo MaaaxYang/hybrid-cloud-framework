@@ -1,0 +1,17 @@
+server:
+  port: 9009
+spring:
+  application:
+    name: hybrid-cloud-samples
+
+
+logging:
+  file: ./bestsign/logs/samples.log
+
+
+bestsign:
+  version: 1.0.0
+  client:
+    host: http://localhost:10008
+  repository-host: http://localhost:10008
+

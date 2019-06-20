@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Config</title>
+    <link data-n-head="true" rel="icon" type="image/x-icon" href="/image/favicon.ico">
+    <style>
+        #body {
+            margin: auto;
+            margin-top: 100px;
+            background-color: #eee;
+            width: 800px;
+            height: 450px;
+        }
+
+        .site-header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 76px;
+            background-color: #fff;
+            z-index: 233;
+            transition: all .3s;
+        }
+
+        .nav-header {
+            display: flex;
+            align-items: center;
+            width: 250px;
+        }
+
+        .nav-brand {
+            margin: 10px;
+            width: 188px;
+            height: 66px;
+            background-position: 50%;
+            background-size: 188px 66px;
+            text-indent: -9999px;
+            background-image: url('/image/logo.png');
+            background-repeat: no-repeat;
+        }
+
+        .btn-footer {
+            width: 100%;
+            height: 50px;
+            background-color: teal;
+            position: relative;
+            top: 110px;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .btn-text {
+            padding-top: 15px;
+            font-size: 16px;
+            color: #ffffff;
+        }
+
+        .place {
+            width: 100%;
+            height: 50px;
+        }
+
+        .btn-hover:hover {
+            background-color: #008099;
+        }
+
+        .text-area-div{
+            width: 90%;
+            height: 150px;
+            margin: auto;
+        }
+
+        .text-area{
+            margin: 0;
+            width: 100%;
+            height: 200px;
+            max-height: 200px;
+            max-width: 100%;
+            min-height: 200px;
+            min-width: 100%;
+        }
+    </style>
+</head>
+<body>
+<header class="site-header">
+    <div class="nav-header">
+        <a href="" class="nav-brand"></a>
+    </div>
+</header>
+
+<div id="body">
+
+    <div class="place"></div>
+
+    <h6 class="text-center">私钥配置</h6>
+    <p style="color: crimson;text-align: center;float: left;margin-left: 40px" id="err"></p>
+    <div class="text-area-div">
+        <textarea class="text-area" id="text-area"></textarea>
+    </div>
+
+    <div class="btn-footer text-center btn-hover" onclick="gotoConfig()">
+        <p class="btn-text">下一步</p>
+    </div>
+
+</div>
+
+</body>
+</html>
+<script>
+    function gotoConfig() {
+        var element=document.getElementById("text-area");
+        var xmlhttp=new XMLHttpRequest();
+        xmlhttp.open("POST","/privateKey",true);
+        xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        xmlhttp.send("privateKey="+element.value);
+
+        xmlhttp.onreadystatechange=function()
+        {
+            if (xmlhttp.readyState==4 && xmlhttp.status==200)
+            {
+                window.location.href = "system-config2.html";
+            }else{
+                var err=document.getElementById("err");
+                err.text = xmlhttp.responseText;
+            }
+        }
+    }
+
+</script>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+    <link data-n-head="true" rel="icon" type="image/x-icon" href="/image/favicon.ico">
+    <style>
+        #body
+        {
+            margin: auto;
+            margin-top: 100px;
+            background-color: #eee;
+            width: 800px;
+            height: 450px;
+        }
+        .site-header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 76px;
+            background-color: #fff;
+            z-index: 233;
+            transition: all .3s;
+        }
+        .nav-header {
+            display: flex;
+            align-items: center;
+            width: 250px;
+        }
+        .nav-brand {
+            margin: 10px;
+            width: 188px;
+            height: 66px;
+            background-position: 50%;
+            background-size: 188px 66px;
+            text-indent: -9999px;
+            background-image: url('/image/logo.png');
+            background-repeat: no-repeat;
+        }
+        .btn-footer{
+            width: 100%;
+            height: 50px;
+            background-color: teal;
+            position: relative;
+            top: 102px;
+        }
+        .text-center{
+            text-align:center;
+        }
+        .btn-text{
+            padding-top: 15px;
+            font-size: 16px;
+            color: #ffffff;
+        }
+        .place{
+            width: 100%;
+            height: 50px;
+        }
+
+        .link-a {
+            text-decoration: none;
+            color: teal;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .btn-hover:hover{
+            background-color: #008099;
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="nav-header">
+            <a href="https://bestsign.cn" class="nav-brand"></a>
+        </div>
+    </header>
+
+    <div id="body">
+
+        <div class="place"></div>
+
+        <h1 class="text-center">欢迎使用菩提系统</h1>
+
+        <h2 class="text-center">Welcome Bestsign Service</h2>
+
+        <h6 class="text-center">注册完成后点击下一步</h6>
+
+        <div class="btn-footer text-center btn-hover" onclick="gotoConfig()">
+            <p class="btn-text">下一步</p>
+        </div>
+
+    </div>
+
+</body>
+</html>
+<script>
+    function gotoConfig() {
+        window.location.href = "system-config.html";
+    }
+</script>

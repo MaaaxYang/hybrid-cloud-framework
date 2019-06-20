@@ -1,0 +1,6 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+org.github.bodhi.hybrid.support.spring.configuration.BootstrapAutoConfiguration,\
+org.github.bodhi.hybrid.support.spring.beans.SpringBeanAutoConfiguration
+
+org.springframework.context.ApplicationContextInitializer=\
+org.github.bodhi.hybrid.support.spring.configuration.BestsignApplicationContextInitializer

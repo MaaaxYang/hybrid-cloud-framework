@@ -1,0 +1,28 @@
+# Maven #
+target/
+
+# eclipse #
+.classpath
+.project
+.settings/
+
+# idea #
+.idea/
+*.iml
+
+# Mac #
+.DS_Store
+
+# others
+.ssh/
+
+output/
+
+disconf/
+*.logs
+
+*.jar
+*.log
+
+bestsign/version
+bestsign/logs
