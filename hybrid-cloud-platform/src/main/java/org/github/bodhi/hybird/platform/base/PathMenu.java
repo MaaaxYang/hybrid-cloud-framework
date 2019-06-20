@@ -8,7 +8,7 @@ package org.github.bodhi.hybird.platform.base;
  **/
 public enum PathMenu {
 
-    BASEPATH("./bestsign"),
+    BASEPATH("./bodhi"),
     SERVICE(BASEPATH.path+"/service"),
     LOGPATH(BASEPATH.path+"/logs"),
     METRICPATH(BASEPATH.path+"/metric"),
