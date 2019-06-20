@@ -1,16 +1,16 @@
 package org.github.bodhi.hybrid.context;
 
-import org.github.bodhi.hybrid.context.config.BestsignConfig;
+import org.github.bodhi.hybrid.context.config.BodhiConfig;
 
 /**
- * @program: bestsign-distributed
+ * @program: bodhi-distributed
  * @description:
  * @author: Maxxx.Yg
  * @create: 2019-03-13 09:55
  **/
 public class DefaultApplicationContext extends AbstractApplicationContext {
 
-    public DefaultApplicationContext(BestsignConfig config) {
+    public DefaultApplicationContext(BodhiConfig config) {
         super(config);
     }
 

@@ -3,7 +3,7 @@ package org.github.bodhi.hybrid.context.config;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @program: bestsign-distributed
+ * @program: bodhi-distributed
  * @description:
  * @author: Maxxx.Yg
  * @create: 2019-03-09 11:22

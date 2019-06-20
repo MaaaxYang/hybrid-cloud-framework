@@ -1,7 +1,7 @@
 package org.github.bodhi.hybrid.norms;
 
 
-import org.github.bodhi.hybrid.norms.bean.BestsignBean;
+import org.github.bodhi.hybrid.norms.bean.BodhiBean;
 import org.github.bodhi.hybrid.norms.event.BestsignEventPublisher;
 import org.github.bodhi.hybrid.norms.serializers.Serializer;
 
@@ -9,16 +9,16 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 
 /**
- * @program: bestsign-distributed
+ * @program: bodhi-distributed
  * @description:
  * @author: Maxxx.Yg
  * @create: 2019-03-09 10:28
  **/
 public interface ApplicationContext extends LifeCycle {
 
-    <T extends BestsignBean> T getBean(String canonicalName);
+    <T extends BodhiBean> T getBean(String canonicalName);
 
-    <T extends BestsignBean> T getBean(Class clazz);
+    <T extends BodhiBean> T getBean(Class clazz);
 
     /**----------------------------------------------**/
 

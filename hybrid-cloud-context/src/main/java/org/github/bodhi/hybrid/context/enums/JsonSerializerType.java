@@ -3,7 +3,7 @@ package org.github.bodhi.hybrid.context.enums;
 import org.github.bodhi.hybrid.context.serializers.JacksonSerializer;
 
 /**
- * @program: bestsign-distributed
+ * @program: bodhi-distributed
  * @description:
  * @author: Maxxx.Yg
  * @create: 2019-03-09 11:58

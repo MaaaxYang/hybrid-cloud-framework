@@ -1,7 +1,7 @@
 package org.github.bodhi.hybird.platform.base;
 
 /**
- * @program: bestsign-distributed
+ * @program: bodhi-distributed
  * @description:
  * @author: Maxxx.Yg
  * @create: 2019-03-18 09:25

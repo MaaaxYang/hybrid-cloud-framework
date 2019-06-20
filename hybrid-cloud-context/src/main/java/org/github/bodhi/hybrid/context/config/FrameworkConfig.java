@@ -9,7 +9,7 @@ package org.github.bodhi.hybrid.context.config;
  **/
 public class FrameworkConfig {
 
-    private String basePath = "./bestsign";
+    private String basePath = "./bodhi";
 
     private String version = "1.0.0";
 

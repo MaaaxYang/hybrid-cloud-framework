@@ -1,6 +1,6 @@
 package org.github.bodhi.hybrid.application.adapter;
 
-import org.github.bodhi.hybrid.norms.exception.BestsignException;
+import org.github.bodhi.hybrid.norms.exception.BodhiException;
 import org.github.bodhi.hybrid.norms.exception.ExceptionLevel;
 
 /**
@@ -9,7 +9,7 @@ import org.github.bodhi.hybrid.norms.exception.ExceptionLevel;
  * @author: Maxxx.Yg
  * @create: 2019-03-22 15:21
  **/
-public class BizException extends BestsignException {
+public class BizException extends BodhiException {
 
     private String code;
 

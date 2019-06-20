@@ -6,10 +6,10 @@ spring:
 
 
 logging:
-  file: ./bestsign/logs/samples.log
+  file: ./bodhi/logs/samples.log
 
 
-bestsign:
+bodhi:
   version: 1.0.0
   client:
     host: http://localhost:10008

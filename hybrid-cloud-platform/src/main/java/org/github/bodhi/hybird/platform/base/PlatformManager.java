@@ -4,7 +4,7 @@ import org.github.bodhi.hybird.platform.factory.BestsignThreadFactory;
 import org.github.bodhi.hybird.platform.loader.ClassLoaderFactory;
 import org.github.bodhi.hybird.platform.loader.DefaultClassloader;
 import org.github.bodhi.hybrid.context.AbstractApplicationContext;
-import org.github.bodhi.hybrid.context.config.BestsignConfig;
+import org.github.bodhi.hybrid.context.config.BodhiConfig;
 import org.github.bodhi.hybrid.context.config.RefreshConfig;
 import org.github.bodhi.hybrid.context.config.ThreadPoolConfig;
 import org.github.bodhi.hybrid.context.factory.ApplicationContextFactory;
@@ -13,7 +13,7 @@ import org.github.bodhi.hybrid.context.serializers.SerializerHolder;
 import org.github.bodhi.hybrid.norms.ApplicationContext;
 import org.github.bodhi.hybrid.norms.event.BestsignEventPublisher;
 import org.github.bodhi.hybrid.norms.event.BestsignListener;
-import org.github.bodhi.hybrid.norms.exception.BestsignException;
+import org.github.bodhi.hybrid.norms.exception.BodhiException;
 import org.github.bodhi.hybrid.norms.serializers.Serializer;
 import org.github.bodhi.hybrid.utils.ServiceLoadUtils;
 import org.slf4j.Logger;
@@ -28,7 +28,7 @@ import java.util.List;
 import java.util.concurrent.*;
 
 /**
- * @program: bestsign-distributed
+ * @program: bodhi-distributed
  * @description:
  * @author: Maxxx.Yg
  * @create: 2019-03-13 15:27
@@ -47,9 +47,9 @@ public class PlatformManager {
 
     private static ScheduledExecutorService scheduled = new ScheduledThreadPoolExecutor(1);
 
-    public static void init(BestsignConfig config,ThreadPoolConfig threadPoolConfig) {
+    public static void init(BodhiConfig config, ThreadPoolConfig threadPoolConfig) {
 
-        logger.info("bestsign platform init ...");
+        logger.info("bodhi platform init ...");
         PlatformStatus.STATE = PlatformStatus.Status.INIT;
 
         // base path check
@@ -74,7 +74,7 @@ public class PlatformManager {
                 }
 
             } catch (IOException e) {
-                throw new BestsignException(e);
+                throw new BodhiException(e);
             }
         }
 
@@ -130,10 +130,10 @@ public class PlatformManager {
 
     public static <T extends ApplicationContext> ApplicationContext startApplication(Class<T> clazz){
 
-        logger.info("bestsign platform start application ...");
+        logger.info("bodhi platform start application ...");
         PlatformStatus.STATE = PlatformStatus.Status.START;
 
-        logger.info("bestsign platform used context : {}",clazz.getCanonicalName());
+        logger.info("bodhi platform used context : {}",clazz.getCanonicalName());
         ApplicationContext newContext = applicationContextFactory.create(clazz);
 
         newContext.start();
@@ -142,7 +142,7 @@ public class PlatformManager {
 
         context = newContext;
 
-        logger.info("bestsign platform started");
+        logger.info("bodhi platform started");
 
         return newContext;
     }
@@ -150,7 +150,7 @@ public class PlatformManager {
 
     public static void shutdownApplicaiton(boolean delay){
 
-        logger.info("bestsign platform shutdown application ...");
+        logger.info("bodhi platform shutdown application ...");
         PlatformStatus.STATE = PlatformStatus.Status.CLOSING;
 
         if (delay){
@@ -171,7 +171,7 @@ public class PlatformManager {
 
     public static <T extends ApplicationContext> ApplicationContext refreshApplication(RefreshConfig config, Class<T> clazz){
 
-        logger.info("bestsign platform refresh application ...");
+        logger.info("bodhi platform refresh application ...");
         PlatformStatus.STATE = PlatformStatus.Status.REFRESHING;
 
         classLoaderFactory = new ClassLoaderFactory();
@@ -200,9 +200,9 @@ public class PlatformManager {
 
         PlatformStatus.STATE = PlatformStatus.Status.REFRESHED;
 
-        logger.info("bestsign platform refresh application end");
+        logger.info("bodhi platform refresh application end");
         logger.info("-----------------------------------------------------------");
-        logger.info("bestsign application refreshed , current version {}",config.getVersion());
+        logger.info("bodhi application refreshed , current version {}",config.getVersion());
         logger.info("-----------------------------------------------------------");
 
         return newContext;

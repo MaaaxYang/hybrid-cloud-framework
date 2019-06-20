@@ -1,6 +1,6 @@
 package org.github.bodhi.hybrid.context.serializers;
 
-import org.github.bodhi.hybrid.norms.exception.BestsignException;
+import org.github.bodhi.hybrid.norms.exception.BodhiException;
 import org.github.bodhi.hybrid.norms.serializers.Serializer;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -51,7 +51,7 @@ public class SerializerHolder {
         try {
             return INSTANCE.getSerializer().newInstance().readValue(source,typeReference);
         } catch (IOException e) {
-           throw new BestsignException(e);
+           throw new BodhiException(e);
         }
     }
 }

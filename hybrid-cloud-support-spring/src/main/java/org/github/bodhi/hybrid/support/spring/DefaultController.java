@@ -6,7 +6,7 @@ import org.github.bodhi.hybrid.context.config.ClassPathConfig;
 import org.github.bodhi.hybrid.context.config.RefreshConfig;
 import org.github.bodhi.hybrid.norms.base.ApiResult;
 import org.github.bodhi.hybrid.support.spring.context.WebApplicationContext;
-import org.github.bodhi.hybrid.support.spring.properties.BestsignProperties;
+import org.github.bodhi.hybrid.support.spring.properties.BodhiProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 
 
 /**
- * @program: bestsign-distributed
+ * @program: bodhi-distributed
  * @description:
  * @author: Maxxx.Yg
  * @create: 2019-03-06 15:07
@@ -30,7 +30,7 @@ public class DefaultController {
     private Dispatcher dispatcher;
 
     @Autowired
-    private BestsignProperties properties;
+    private BodhiProperties properties;
 
     @RequestMapping("/**")
     public ResponseEntity<byte[]> dispatch(HttpServletRequest request) throws Exception {

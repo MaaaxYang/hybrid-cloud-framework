@@ -5,18 +5,14 @@ import org.github.bodhi.hybrid.internet.client.Client;
 import org.github.bodhi.hybrid.internet.client.impl.DefaultHttpClient;
 import org.github.bodhi.hybrid.internet.enums.RelayTiming;
 import org.github.bodhi.hybrid.internet.holder.ClientHolder;
-import org.github.bodhi.hybrid.internet.client.Client;
-import org.github.bodhi.hybrid.internet.client.impl.DefaultHttpClient;
-import org.github.bodhi.hybrid.internet.enums.RelayTiming;
-import org.github.bodhi.hybrid.internet.holder.ClientHolder;
-import org.github.bodhi.hybrid.norms.exception.BestsignException;
+import org.github.bodhi.hybrid.norms.exception.BodhiException;
 
 import java.lang.reflect.Constructor;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * @program: bestsign-distributed
+ * @program: bodhi-distributed
  * @description:
  * @author: Maxxx.Yg
  * @create: 2019-03-06 11:21
@@ -43,14 +39,14 @@ public class StrategySelector {
         }
 
         if (parameter==null){
-            throw new BestsignException("strategy parameter can't null");
+            throw new BodhiException("strategy parameter can't null");
         }
 
         Relay relay = parameter.getMethod().getAnnotation(Relay.class);
         // normal strategy
         if (relay==null){
             if (parameter.getTarget()==null){
-                throw new BestsignException(parameter.getMethod().getDeclaringClass().getCanonicalName()+ "not found implementation class");
+                throw new BodhiException(parameter.getMethod().getDeclaringClass().getCanonicalName()+ "not found implementation class");
             }
             return get(parameter,NormalStrategy.class);
         }
@@ -64,7 +60,7 @@ public class StrategySelector {
         }
 
         if (parameter.getTarget()==null){
-            throw new BestsignException(parameter.getMethod().getDeclaringClass().getCanonicalName()+ " not found implementation class");
+            throw new BodhiException(parameter.getMethod().getDeclaringClass().getCanonicalName()+ " not found implementation class");
         }
 
         // before strategy
@@ -77,7 +73,7 @@ public class StrategySelector {
             return get(parameter,AfterStrategy.class);
         }
 
-        throw new BestsignException("not found a strategy");
+        throw new BodhiException("not found a strategy");
     }
 
 
@@ -92,7 +88,7 @@ public class StrategySelector {
                         Constructor constructor = clazz.getConstructor(Client.class);
                         strategy = (IStrategy) constructor.newInstance(client);
                     }catch (Exception e){
-                        throw new BestsignException("strategy instance error",e);
+                        throw new BodhiException("strategy instance error",e);
                     }
                     cache.put(key,strategy);
                 }

@@ -6,7 +6,7 @@ import org.github.bodhi.hybrid.support.spring.Dispatcher;
 import org.github.bodhi.hybrid.support.spring.context.WebApplicationContext;
 import org.github.bodhi.hybrid.support.spring.filters.GlobalServletFilter;
 import org.github.bodhi.hybrid.support.spring.holder.ServletFilterHolder;
-import org.github.bodhi.hybrid.support.spring.properties.BestsignProperties;
+import org.github.bodhi.hybrid.support.spring.properties.BodhiProperties;
 import org.github.bodhi.hybrid.support.spring.properties.ClientProperties;
 import org.github.bodhi.hybrid.support.spring.properties.ThreadPoolProperties;
 import org.springframework.beans.factory.DisposableBean;
@@ -22,7 +22,7 @@ import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 
 /**
- * @program: bestsign-distributed
+ * @program: bodhi-distributed
  * @description:
  * @author: Maxxx.Yg
  * @create: 2019-03-13 21:09
@@ -34,7 +34,7 @@ import org.springframework.core.annotation.Order;
 @ComponentScan("org.github.bodhi.hybrid.support.spring")
 @EnableConfigurationProperties(
         {
-                BestsignProperties.class,
+                BodhiProperties.class,
                 ThreadPoolProperties.class,
                 ClientProperties.class
         }
@@ -42,7 +42,7 @@ import org.springframework.core.annotation.Order;
 public class BootstrapAutoConfiguration implements InitializingBean,DisposableBean {
 
     @Autowired
-    private BestsignProperties bestsignProperties;
+    private BodhiProperties bodhiProperties;
 
     @Autowired
     private ThreadPoolProperties threadPoolProperties;
@@ -57,7 +57,7 @@ public class BootstrapAutoConfiguration implements InitializingBean,DisposableBe
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        BestsignBootstrap.start(bestsignProperties,clientProperties,threadPoolProperties,WebApplicationContext.class);
+        BestsignBootstrap.start(bodhiProperties,clientProperties,threadPoolProperties,WebApplicationContext.class);
     }
 
     @Bean

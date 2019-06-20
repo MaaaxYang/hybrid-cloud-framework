@@ -1,7 +1,7 @@
 package org.github.bodhi.hybrid.internet.enums;
 
 /**
- * @program: bestsign-distributed
+ * @program: bodhi-distributed
  * @description:
  * @author: Maxxx.Yg
  * @create: 2019-03-06 10:53

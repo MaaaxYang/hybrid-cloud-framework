@@ -1,6 +1,6 @@
 package org.github.bodhi.hybrid.support.spring.context;
 
-import org.github.bodhi.hybrid.context.config.BestsignConfig;
+import org.github.bodhi.hybrid.context.config.BodhiConfig;
 import org.github.bodhi.hybrid.internet.context.RelayApplicationContext;
 import org.github.bodhi.hybrid.norms.BestsignApi;
 import org.github.bodhi.hybrid.support.spring.aop.ApiFactoryBean;
@@ -28,14 +28,14 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @program: bestsign-distributed
+ * @program: bodhi-distributed
  * @description:
  * @author: Maxxx.Yg
  * @create: 2019-03-13 21:10
  **/
 public class WebApplicationContext extends RelayApplicationContext {
 
-    public WebApplicationContext(BestsignConfig config) {
+    public WebApplicationContext(BodhiConfig config) {
         super(config);
     }
 

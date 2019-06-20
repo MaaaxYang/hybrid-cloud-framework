@@ -11,7 +11,7 @@ import java.lang.reflect.Method;
 import java.util.concurrent.ExecutorService;
 
 /**
- * @program: bestsign-distributed
+ * @program: bodhi-distributed
  * @description:
  * @author: Maxxx.Yg
  * @create: 2019-03-13 11:04

@@ -4,7 +4,7 @@ import org.github.bodhi.hybird.platform.base.PathMenu;
 import org.github.bodhi.hybrid.application.adapter.repository.ObjectMap;
 import org.github.bodhi.hybrid.application.adapter.repository.RepositoryManager;
 import org.github.bodhi.hybrid.application.adapter.repository.ServiceMap;
-import org.github.bodhi.hybrid.context.config.BestsignPackage;
+import org.github.bodhi.hybrid.context.config.BodhiPackage;
 import org.github.bodhi.hybrid.context.config.ClassPathConfig;
 import org.github.bodhi.hybrid.utils.FileUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -40,13 +40,13 @@ public class InitializeHelper {
             fileInit(map);
 
             for(ObjectMap objectMap : map.getMaps()){
-                BestsignPackage bestsignPackage = new BestsignPackage();
-                bestsignPackage.setId(objectMap.getId());
-                bestsignPackage.setFileName(objectMap.getFileName());
-                bestsignPackage.setPath(objectMap.getRelativePath());
-                bestsignPackage.setType(objectMap.getType());
-                bestsignPackage.setVersion(objectMap.getVersion());
-                config.getPackages().add(bestsignPackage);
+                BodhiPackage bodhiPackage = new BodhiPackage();
+                bodhiPackage.setId(objectMap.getId());
+                bodhiPackage.setFileName(objectMap.getFileName());
+                bodhiPackage.setPath(objectMap.getRelativePath());
+                bodhiPackage.setType(objectMap.getType());
+                bodhiPackage.setVersion(objectMap.getVersion());
+                config.getPackages().add(bodhiPackage);
             }
         }
 

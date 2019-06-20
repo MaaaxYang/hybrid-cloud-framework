@@ -22,7 +22,7 @@ import java.util.Map.Entry;
 
 public class JwtUtils {
 
-    private static final String ISS = "bestsign";
+    private static final String ISS = "bodhi";
 
     public static String createJwtToken(Map<String, Object> payLoad, String secret, long expireTime) throws UnsupportedEncodingException {
         // HMAC

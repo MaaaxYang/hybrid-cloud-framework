@@ -11,19 +11,19 @@ import java.util.List;
  **/
 public class ClassPathConfig {
 
-    private List<BestsignPackage> packages;
+    private List<BodhiPackage> packages;
 
-    public List<BestsignPackage> getPackages() {
+    public List<BodhiPackage> getPackages() {
         return packages;
     }
 
-    public void setPackages(List<BestsignPackage> packages) {
+    public void setPackages(List<BodhiPackage> packages) {
         this.packages = packages;
     }
 
     public static ClassPathConfig DEFAULT(){
         ClassPathConfig config = new ClassPathConfig();
-        config.setPackages(new ArrayList<BestsignPackage>());
+        config.setPackages(new ArrayList<BodhiPackage>());
         return config;
     }
 }

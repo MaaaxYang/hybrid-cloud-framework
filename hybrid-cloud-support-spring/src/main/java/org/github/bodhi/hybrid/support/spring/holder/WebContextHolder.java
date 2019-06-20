@@ -3,7 +3,7 @@ package org.github.bodhi.hybrid.support.spring.holder;
 import org.github.bodhi.hybrid.support.spring.context.WebApplicationContext;
 
 /**
- * @program: bestsign-distributed
+ * @program: bodhi-distributed
  * @description:
  * @author: Maxxx.Yg
  * @create: 2019-03-13 22:31

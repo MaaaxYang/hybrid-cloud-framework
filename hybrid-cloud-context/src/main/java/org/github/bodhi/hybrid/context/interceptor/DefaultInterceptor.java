@@ -4,8 +4,8 @@ import org.github.bodhi.hybrid.context.AbstractApplicationContext;
 import org.github.bodhi.hybrid.context.order.Order;
 import org.github.bodhi.hybrid.norms.BestsignApplication;
 import org.github.bodhi.hybrid.norms.annotations.BestsignProvider;
-import org.github.bodhi.hybrid.norms.bean.BestsignBean;
-import org.github.bodhi.hybrid.norms.exception.BestsignException;
+import org.github.bodhi.hybrid.norms.bean.BodhiBean;
+import org.github.bodhi.hybrid.norms.exception.BodhiException;
 import org.github.bodhi.hybrid.utils.StringUtils;
 
 import java.lang.annotation.Annotation;
@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @program: bestsign-distributed
+ * @program: bodhi-distributed
  * @description:
  * @author: Maxxx.Yg
  * @create: 2019-03-13 10:50
@@ -24,13 +24,13 @@ public class DefaultInterceptor implements ApplicationInterceptor {
 
     @Override
     public void execute(AbstractApplicationContext context) {
-        Map<String,BestsignBean> beanMap = context.getBeanMap();
+        Map<String,BodhiBean> beanMap = context.getBeanMap();
         // factory proxy wapper
         for (BestsignApplication app : context.applicaitons()) {
             Class appClass = app.getClass();
             Class[] interfaces = appClass.getInterfaces();
             if (interfaces == null || interfaces.length == 0) {
-                throw new BestsignException(appClass.getCanonicalName() + " must implement a interface");
+                throw new BodhiException(appClass.getCanonicalName() + " must implement a interface");
             }
 
             List<Class> matchInterface = new ArrayList<>();
@@ -40,7 +40,7 @@ public class DefaultInterceptor implements ApplicationInterceptor {
                 }
             }
             if (matchInterface.isEmpty()) {
-                throw new BestsignException(appClass.getCanonicalName() + " must implement a interface and the interface has annotation @ProcessProvider");
+                throw new BodhiException(appClass.getCanonicalName() + " must implement a interface and the interface has annotation @ProcessProvider");
             }
             for (Class itf : matchInterface) {
 
@@ -56,13 +56,13 @@ public class DefaultInterceptor implements ApplicationInterceptor {
                 }
 
                 // create bean
-                BestsignBean bestsignBean = new BestsignBean();
-                bestsignBean.setName(itf.getCanonicalName());
-                bestsignBean.setAlias(alias);
-                bestsignBean.setApplication(app);
-                bestsignBean.setApplicationClass(appClass);
+                BodhiBean bodhiBean = new BodhiBean();
+                bodhiBean.setName(itf.getCanonicalName());
+                bodhiBean.setAlias(alias);
+                bodhiBean.setApplication(app);
+                bodhiBean.setApplicationClass(appClass);
 
-                beanMap.put(key,bestsignBean);
+                beanMap.put(key, bodhiBean);
             }
         }
     }

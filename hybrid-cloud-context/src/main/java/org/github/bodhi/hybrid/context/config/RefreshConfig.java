@@ -1,7 +1,7 @@
 package org.github.bodhi.hybrid.context.config;
 
 /**
- * @program: bestsign-distributed
+ * @program: bodhi-distributed
  * @description:
  * @author: Maxxx.Yg
  * @create: 2019-03-13 20:55

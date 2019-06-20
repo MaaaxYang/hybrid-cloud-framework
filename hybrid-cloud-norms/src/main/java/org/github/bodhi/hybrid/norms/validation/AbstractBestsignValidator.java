@@ -1,9 +1,9 @@
 package org.github.bodhi.hybrid.norms.validation;
 
-import org.github.bodhi.hybrid.norms.exception.BestsignException;
+import org.github.bodhi.hybrid.norms.exception.BodhiException;
 
 /**
- * @program: bestsign-distributed
+ * @program: bodhi-distributed
  * @description:
  * @author: Maxxx.Yg
  * @create: 2019-02-19 16:06
@@ -25,7 +25,7 @@ public abstract class AbstractBestsignValidator implements BestsignValidator{
     }
 
     @Override
-    public void check() throws BestsignException {
+    public void check() throws BodhiException {
 
         verify();
 
@@ -34,5 +34,5 @@ public abstract class AbstractBestsignValidator implements BestsignValidator{
         }
     }
 
-    public abstract void verify() throws BestsignException;
+    public abstract void verify() throws BodhiException;
 }

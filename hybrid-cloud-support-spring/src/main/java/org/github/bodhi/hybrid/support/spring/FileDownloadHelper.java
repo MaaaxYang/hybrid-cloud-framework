@@ -5,7 +5,7 @@ import org.github.bodhi.hybrid.internet.ClientRequest;
 import org.github.bodhi.hybrid.internet.client.impl.SimpleHttpClient;
 import org.github.bodhi.hybrid.internet.enums.HttpMethod;
 import org.github.bodhi.hybrid.internet.holder.ClientHolder;
-import org.github.bodhi.hybrid.norms.exception.BestsignException;
+import org.github.bodhi.hybrid.norms.exception.BodhiException;
 import org.github.bodhi.hybrid.utils.FileUtils;
 import okhttp3.Response;
 import org.springframework.util.CollectionUtils;
@@ -64,7 +64,7 @@ public class FileDownloadHelper {
                 FileUtils.save(Paths.get(savePath+"/"+ver+"/"+fileName),bytes);
 
             } catch (IOException e) {
-                throw new BestsignException("download updating file fail",e);
+                throw new BodhiException("download updating file fail",e);
             }
 
         }

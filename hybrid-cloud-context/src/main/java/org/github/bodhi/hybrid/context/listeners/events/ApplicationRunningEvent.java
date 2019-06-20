@@ -2,7 +2,7 @@ package org.github.bodhi.hybrid.context.listeners.events;
 
 import org.github.bodhi.hybrid.context.AbstractApplicationContext;
 /**
- * @program: bestsign-distributed
+ * @program: bodhi-distributed
  * @description:
  * @author: Maxxx.Yg
  * @create: 2019-03-12 15:26

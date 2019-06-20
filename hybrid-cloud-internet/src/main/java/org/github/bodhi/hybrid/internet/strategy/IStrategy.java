@@ -4,7 +4,7 @@ import org.github.bodhi.hybrid.internet.client.Client;
 import org.github.bodhi.hybrid.internet.client.Client;
 
 /**
- * @program: bestsign-distributed
+ * @program: bodhi-distributed
  * @description:
  * @author: Maxxx.Yg
  * @create: 2019-03-06 11:19

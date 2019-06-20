@@ -9,13 +9,7 @@ import org.github.bodhi.hybrid.internet.enums.HttpMethod;
 import org.github.bodhi.hybrid.internet.appointment.Param;
 import org.github.bodhi.hybrid.internet.appointment.Relay;
 import org.github.bodhi.hybrid.internet.holder.ClientHolder;
-import org.github.bodhi.hybrid.internet.ClientRequest;
-import org.github.bodhi.hybrid.internet.appointment.Param;
-import org.github.bodhi.hybrid.internet.client.Client;
-import org.github.bodhi.hybrid.internet.config.ClientConfig;
-import org.github.bodhi.hybrid.internet.enums.HttpMethod;
-import org.github.bodhi.hybrid.internet.holder.ClientHolder;
-import org.github.bodhi.hybrid.norms.exception.BestsignException;
+import org.github.bodhi.hybrid.norms.exception.BodhiException;
 import org.github.bodhi.hybrid.norms.serializers.Serializer;
 import org.github.bodhi.hybrid.utils.StringUtils;
 import okhttp3.Response;
@@ -27,7 +21,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @program: bestsign-distributed
+ * @program: bodhi-distributed
  * @description:
  * @author: Maxxx.Yg
  * @create: 2019-03-06 11:28
@@ -93,7 +87,7 @@ public abstract class AbstractStrategy implements IStrategy {
                 headers = findHeaders(parameter.getSerializer(), arg);
 
             } else if (parameter.getArgs().length > 1) {
-                throw new BestsignException("relay http method post only support one parameter");
+                throw new BodhiException("relay http method post only support one parameter");
             }
 
             clientRequest.setHeaders(headers);
@@ -118,10 +112,10 @@ public abstract class AbstractStrategy implements IStrategy {
 
                 response = client.execute(clientRequest);
             } else {
-                throw new BestsignException("http method post only support one parameter");
+                throw new BodhiException("http method post only support one parameter");
             }
         } else {
-            throw new BestsignException("http method only support get or post");
+            throw new BodhiException("http method only support get or post");
         }
 
         switch (parameter.getResponseType()) {

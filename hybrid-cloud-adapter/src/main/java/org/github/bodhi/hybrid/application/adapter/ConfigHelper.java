@@ -1,6 +1,6 @@
 package org.github.bodhi.hybrid.application.adapter;
 
-import org.github.bodhi.hybrid.context.config.BestsignConfig;
+import org.github.bodhi.hybrid.context.config.BodhiConfig;
 import org.github.bodhi.hybrid.context.config.ThreadPoolConfig;
 import org.github.bodhi.hybrid.internet.config.ClientConfig;
 
@@ -12,18 +12,18 @@ import org.github.bodhi.hybrid.internet.config.ClientConfig;
  **/
 public class ConfigHelper {
 
-    private static BestsignConfig bestsignConfig;
+    private static BodhiConfig bodhiConfig;
 
     private static ClientConfig clientConfig;
 
     private static ThreadPoolConfig threadPoolConfig;
 
-    public static BestsignConfig getBestsignConfig() {
-        return bestsignConfig;
+    public static BodhiConfig getBodhiConfig() {
+        return bodhiConfig;
     }
 
-    public static void setBestsignConfig(BestsignConfig bestsignConfig) {
-        ConfigHelper.bestsignConfig = bestsignConfig;
+    public static void setBodhiConfig(BodhiConfig bodhiConfig) {
+        ConfigHelper.bodhiConfig = bodhiConfig;
     }
 
     public static ClientConfig getClientConfig() {

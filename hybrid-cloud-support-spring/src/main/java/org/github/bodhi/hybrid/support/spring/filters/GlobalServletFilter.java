@@ -3,7 +3,7 @@ package org.github.bodhi.hybrid.support.spring.filters;
 import org.github.bodhi.hybird.platform.base.PlatformStatus;
 import org.github.bodhi.hybrid.application.adapter.BizException;
 import org.github.bodhi.hybrid.context.serializers.SerializerHolder;
-import org.github.bodhi.hybrid.norms.exception.BestsignException;
+import org.github.bodhi.hybrid.norms.exception.BodhiException;
 import org.github.bodhi.hybrid.norms.exception.StandardCode;
 import org.github.bodhi.hybrid.norms.web.BestsignWebFilter;
 import org.github.bodhi.hybrid.norms.base.ApiResult;
@@ -76,7 +76,7 @@ public class GlobalServletFilter implements Filter {
 
         long startTime = System.currentTimeMillis();
         LogEntity logEntity = new LogEntity();
-        logEntity.setGourpId(String.valueOf(httpServletRequest.getAttribute("bestsign-client-id")));
+        logEntity.setGourpId(String.valueOf(httpServletRequest.getAttribute("bodhi-client-id")));
         logEntity.setModule(httpServletRequest.getServletPath());
         logEntity.setObject(httpServletRequest.getServletPath());
         logEntity.setReqid(requestId);
@@ -119,13 +119,13 @@ public class GlobalServletFilter implements Filter {
             response.getWriter().write(SerializerHolder.stringValue(ApiResult.error(e.getMessage())));
             return;
 
-        } catch (BestsignException e) {
+        } catch (BodhiException e) {
 
             logEntity.setStatus(StandardCode.ERROR.getCode());
             logEntity.setMsg(e.getMessage());
             logEntity.setResult("BizError");
 
-            logger.error("find bestsign exception : ", e);
+            logger.error("find bodhi exception : ", e);
 
             ((HttpServletResponse) response).setHeader("Content-Type", "application/json; charset=utf-8");
             response.getWriter().write(SerializerHolder.stringValue(ApiResult.error(e.getMessage())));

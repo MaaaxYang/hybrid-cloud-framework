@@ -2,7 +2,7 @@ package org.github.bodhi.hybrid.internet.filters;
 
 import org.github.bodhi.hybrid.context.order.Order;
 import org.github.bodhi.hybrid.internet.appointment.AfterRequestProcessFilter;
-import org.github.bodhi.hybrid.norms.exception.BestsignException;
+import org.github.bodhi.hybrid.norms.exception.BodhiException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import okhttp3.Response;
 import org.slf4j.Logger;
@@ -35,7 +35,7 @@ public class DefaultAfterFilter implements AfterRequestProcessFilter<DefaultAfte
 
             return mapper.readValue(res,responseClass);
         } catch (IOException e) {
-            throw new BestsignException(e);
+            throw new BodhiException(e);
         }
     }
 

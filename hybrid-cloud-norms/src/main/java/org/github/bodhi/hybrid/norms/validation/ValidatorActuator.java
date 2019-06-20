@@ -1,9 +1,9 @@
 package org.github.bodhi.hybrid.norms.validation;
 
-import org.github.bodhi.hybrid.norms.exception.BestsignException;
+import org.github.bodhi.hybrid.norms.exception.BodhiException;
 
 /**
- * @program: bestsign-distributed
+ * @program: bodhi-distributed
  * @description:
  * @author: Maxxx.Yg
  * @create: 2019-02-19 16:13
@@ -21,7 +21,7 @@ public final class ValidatorActuator {
         return this;
     }
 
-    public void execute() throws BestsignException {
+    public void execute() throws BodhiException {
         if (validatorStater!=null){
             validatorStater.check();
         }

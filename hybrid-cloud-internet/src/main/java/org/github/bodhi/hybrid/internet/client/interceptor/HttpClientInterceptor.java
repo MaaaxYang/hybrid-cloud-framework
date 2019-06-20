@@ -14,7 +14,7 @@ import java.util.Date;
 import java.util.UUID;
 
 /**
- * @program: bestsign-distributed
+ * @program: bodhi-distributed
  * @description:
  * @author: Maxxx.Yg
  * @create: 2019-03-05 16:58

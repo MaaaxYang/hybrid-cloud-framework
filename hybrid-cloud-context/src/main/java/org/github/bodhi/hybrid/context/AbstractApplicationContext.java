@@ -1,6 +1,6 @@
 package org.github.bodhi.hybrid.context;
 
-import org.github.bodhi.hybrid.context.config.BestsignConfig;
+import org.github.bodhi.hybrid.context.config.BodhiConfig;
 import org.github.bodhi.hybrid.context.interceptor.ApplicationInterceptor;
 import org.github.bodhi.hybrid.context.listeners.events.ApplicationClosedEvent;
 import org.github.bodhi.hybrid.context.listeners.events.ApplicationClosingEvent;
@@ -10,7 +10,7 @@ import org.github.bodhi.hybrid.context.order.Orders;
 import org.github.bodhi.hybrid.norms.ApplicationContext;
 import org.github.bodhi.hybrid.norms.BestsignApplication;
 import org.github.bodhi.hybrid.norms.annotations.BestsignProvider;
-import org.github.bodhi.hybrid.norms.bean.BestsignBean;
+import org.github.bodhi.hybrid.norms.bean.BodhiBean;
 import org.github.bodhi.hybrid.norms.event.BestsignEventPublisher;
 import org.github.bodhi.hybrid.norms.serializers.Serializer;
 import org.github.bodhi.hybrid.utils.ServiceLoadUtils;
@@ -25,7 +25,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 
 /**
- * @program: bestsign-distributed
+ * @program: bodhi-distributed
  * @description:
  * @author: Maxxx.Yg
  * @create: 2019-03-13 09:19
@@ -34,11 +34,11 @@ public abstract class AbstractApplicationContext implements ApplicationContext {
 
     protected final static Logger logger = LoggerFactory.getLogger(ApplicationContext.class);
 
-    protected Map<String, BestsignBean> beanMap = new ConcurrentHashMap<>();
+    protected Map<String, BodhiBean> beanMap = new ConcurrentHashMap<>();
 
     protected List<BestsignApplication> applications;
 
-    protected BestsignConfig config;
+    protected BodhiConfig config;
 
     protected ClassLoader loader;
 
@@ -48,18 +48,18 @@ public abstract class AbstractApplicationContext implements ApplicationContext {
 
     protected Serializer serializer;
 
-    public AbstractApplicationContext(BestsignConfig config) {
+    public AbstractApplicationContext(BodhiConfig config) {
         this.config = config;
     }
 
     @Override
-    public <T extends BestsignBean> T getBean(String canonicalName) {
+    public <T extends BodhiBean> T getBean(String canonicalName) {
         return (T)beanMap.get(canonicalName);
     }
 
     @Override
-    public <T extends BestsignBean> T getBean(Class clazz) {
-        BestsignBean bean = beanMap.get(clazz.getCanonicalName());
+    public <T extends BodhiBean> T getBean(Class clazz) {
+        BodhiBean bean = beanMap.get(clazz.getCanonicalName());
         if (bean==null){
             String alias = getAlias(clazz);
             if (!StringUtils.isNullOrEmpty(alias)){
@@ -183,11 +183,11 @@ public abstract class AbstractApplicationContext implements ApplicationContext {
         logger.info("application context closed");
     }
 
-    public Map<String, BestsignBean> getBeanMap() {
+    public Map<String, BodhiBean> getBeanMap() {
         return beanMap;
     }
 
-    public BestsignConfig getConfig() {
+    public BodhiConfig getConfig() {
         return config;
     }
 

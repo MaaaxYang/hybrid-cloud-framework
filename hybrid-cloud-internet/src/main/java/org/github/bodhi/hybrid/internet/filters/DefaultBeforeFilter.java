@@ -3,7 +3,7 @@ package org.github.bodhi.hybrid.internet.filters;
 import org.github.bodhi.hybrid.context.order.Order;
 import org.github.bodhi.hybrid.internet.ClientRequest;
 import org.github.bodhi.hybrid.internet.appointment.BeforeRequestProcessFilter;
-import org.github.bodhi.hybrid.norms.exception.BestsignException;
+import org.github.bodhi.hybrid.norms.exception.BodhiException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
@@ -27,7 +27,7 @@ public class DefaultBeforeFilter implements BeforeRequestProcessFilter<DefaultBe
         try {
             logger.info("current request content : {} ",mapper.writeValueAsString(request));
         } catch (JsonProcessingException e) {
-            throw new BestsignException(e);
+            throw new BodhiException(e);
         }
     }
 }

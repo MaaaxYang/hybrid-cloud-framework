@@ -3,7 +3,7 @@ package org.github.bodhi.hybrid.support.spring.holder;
 import org.springframework.context.ConfigurableApplicationContext;
 
 /**
- * @program: bestsign-distributed
+ * @program: bodhi-distributed
  * @description:
  * @author: Maxxx.Yg
  * @create: 2019-03-06 16:47

@@ -6,14 +6,14 @@ import org.github.bodhi.hybrid.internet.config.ClientConfig;
 import org.github.bodhi.hybrid.internet.enums.HttpMethod;
 import org.github.bodhi.hybrid.internet.config.RemoteConfigure;
 import org.github.bodhi.hybrid.internet.config.OKHttpConfigure;
-import org.github.bodhi.hybrid.norms.exception.BestsignException;
+import org.github.bodhi.hybrid.norms.exception.BodhiException;
 import org.github.bodhi.hybrid.utils.StringUtils;
 import okhttp3.*;
 
 import java.util.Map;
 
 /**
- * @program: bestsign-distributed
+ * @program: bodhi-distributed
  * @description:
  * @author: Maxxx.Yg
  * @create: 2019-03-07 11:06
@@ -55,7 +55,7 @@ public class SimpleHttpClient implements Client {
         }else if(HttpMethod.DELETE.equals(request.getHttpMethod())){
             builder.delete(RequestBody.create(mediaType,request.getBody()));
         }else {
-            throw new BestsignException("Http method only support get or post");
+            throw new BodhiException("Http method only support get or post");
         }
 
         for(Map.Entry<String,String> entry: request.getHeaders().entrySet()){
@@ -67,20 +67,20 @@ public class SimpleHttpClient implements Client {
 
 
     @Override
-    public <T> T execute(ClientRequest request, Class<T> responseClass) throws BestsignException {
+    public <T> T execute(ClientRequest request, Class<T> responseClass) throws BodhiException {
         if (!Response.class.equals(responseClass)){
-            throw new BestsignException("transfer http client only support okhttp3 response");
+            throw new BodhiException("transfer http client only support okhttp3 response");
         }
         try {
             Response response = onResponse(build(request));
             return (T)response;
         } catch (Exception e) {
-            throw new BestsignException(e);
+            throw new BodhiException(e);
         }
     }
 
     @Override
-    public Response execute(ClientRequest request) throws BestsignException {
+    public Response execute(ClientRequest request) throws BodhiException {
         return execute(request,Response.class);
     }
 

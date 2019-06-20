@@ -7,7 +7,7 @@ import org.github.bodhi.hybrid.internet.client.impl.SimpleHttpClient;
 import org.github.bodhi.hybrid.internet.config.ClientConfig;
 import org.github.bodhi.hybrid.internet.enums.HttpMethod;
 import org.github.bodhi.hybrid.norms.base.ApiResult;
-import org.github.bodhi.hybrid.norms.exception.BestsignException;
+import org.github.bodhi.hybrid.norms.exception.BodhiException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import okhttp3.Response;
 import org.slf4j.Logger;
@@ -62,7 +62,7 @@ public class RepositoryManager {
         try {
             res = response.body().string();
         } catch (Exception e) {
-            throw new BestsignException(e);
+            throw new BodhiException(e);
         }
 
         ApiResult<ServiceMap> map = SerializerHolder.toObject(res, new TypeReference<ApiResult<ServiceMap>>() {});

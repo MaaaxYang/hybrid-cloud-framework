@@ -5,7 +5,7 @@ import org.github.bodhi.hybrid.internet.appointment.AfterRequestProcessFilter;
 import org.github.bodhi.hybrid.internet.appointment.BeforeRequestProcessFilter;
 import org.github.bodhi.hybrid.internet.client.Client;
 import org.github.bodhi.hybrid.internet.filters.FilterManager;
-import org.github.bodhi.hybrid.norms.exception.BestsignException;
+import org.github.bodhi.hybrid.norms.exception.BodhiException;
 import org.github.bodhi.hybrid.utils.StringUtils;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -15,7 +15,7 @@ import org.slf4j.LoggerFactory;
 import java.util.List;
 
 /**
- * @program: bestsign-distributed
+ * @program: bodhi-distributed
  * @description:
  * @author: Maxxx.Yg
  * @create: 2019-03-07 09:23
@@ -31,7 +31,7 @@ public abstract class AbstractHttpClient implements Client {
     protected String requestHost;
 
     @Override
-    public <T> T execute(ClientRequest request, Class<T> responseClass)throws BestsignException {
+    public <T> T execute(ClientRequest request, Class<T> responseClass)throws BodhiException {
         this.request = request;
         try{
             requestHost = request.getHost();
@@ -49,14 +49,14 @@ public abstract class AbstractHttpClient implements Client {
             }
             Response response = onResponse(build());
             if (response == null){
-                throw new BestsignException("internet response is null");
+                throw new BodhiException("internet response is null");
             }
 
             if (Response.class.equals(responseClass)){
                 return (T) response;
             }else{
                 if (response.code()!=200){
-                    throw new BestsignException("remote server exception ："+response.body().string());
+                    throw new BodhiException("remote server exception ："+response.body().string());
                 }
             }
 
@@ -69,12 +69,12 @@ public abstract class AbstractHttpClient implements Client {
             return res;
 
         }catch (Exception e){
-            throw new BestsignException("internet request error ",e);
+            throw new BodhiException("internet request error ",e);
         }
     }
 
     @Override
-    public Response execute(ClientRequest request) throws BestsignException {
+    public Response execute(ClientRequest request) throws BodhiException {
         return execute(request,Response.class);
     }
 

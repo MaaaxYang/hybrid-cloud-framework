@@ -1,12 +1,11 @@
 package org.github.bodhi.hybrid.internet.context;
 
 import org.github.bodhi.hybrid.context.AbstractApplicationContext;
-import org.github.bodhi.hybrid.context.config.BestsignConfig;
-import org.github.bodhi.hybrid.internet.factory.HttpProxyFactory;
+import org.github.bodhi.hybrid.context.config.BodhiConfig;
 import org.github.bodhi.hybrid.internet.factory.HttpProxyFactory;
 import org.github.bodhi.hybrid.norms.annotations.BestsignProvider;
-import org.github.bodhi.hybrid.norms.bean.BestsignBean;
-import org.github.bodhi.hybrid.norms.exception.BestsignException;
+import org.github.bodhi.hybrid.norms.bean.BodhiBean;
+import org.github.bodhi.hybrid.norms.exception.BodhiException;
 import org.github.bodhi.hybrid.utils.StringUtils;
 
 import java.lang.annotation.Annotation;
@@ -19,7 +18,7 @@ import java.lang.annotation.Annotation;
  **/
 public class RelayApplicationContext extends AbstractApplicationContext {
 
-    public RelayApplicationContext(BestsignConfig config) {
+    public RelayApplicationContext(BodhiConfig config) {
         super(config);
     }
 
@@ -31,8 +30,8 @@ public class RelayApplicationContext extends AbstractApplicationContext {
     }
 
     @Override
-    public <T extends BestsignBean> T getBean(String canonicalName) {
-        BestsignBean bean = super.getBean(canonicalName);
+    public <T extends BodhiBean> T getBean(String canonicalName) {
+        BodhiBean bean = super.getBean(canonicalName);
         if (bean == null){
             synchronized (RelayApplicationContext.class){
                 bean = super.getBean(canonicalName);
@@ -40,7 +39,7 @@ public class RelayApplicationContext extends AbstractApplicationContext {
                     try {
                         return createBean(Class.forName(canonicalName,false,loader));
                     } catch (ClassNotFoundException e) {
-                        throw new BestsignException(e);
+                        throw new BodhiException(e);
                     }
                 }
             }
@@ -49,8 +48,8 @@ public class RelayApplicationContext extends AbstractApplicationContext {
     }
 
     @Override
-    public <T extends BestsignBean> T getBean(Class clazz) {
-        BestsignBean bean = super.getBean(clazz);
+    public <T extends BodhiBean> T getBean(Class clazz) {
+        BodhiBean bean = super.getBean(clazz);
         if (bean == null){
             synchronized (RelayApplicationContext.class){
                 bean = super.getBean(clazz);
@@ -63,7 +62,7 @@ public class RelayApplicationContext extends AbstractApplicationContext {
     }
 
 
-    private <T extends BestsignBean> T createBean(Class clazz){
+    private <T extends BodhiBean> T createBean(Class clazz){
         if (clazz.isInterface()){
             Annotation provider = clazz.getAnnotation(BestsignProvider.class);
             if (provider!=null){
@@ -74,7 +73,7 @@ public class RelayApplicationContext extends AbstractApplicationContext {
                     key = alias;
                 }
                 Object proxyObj = factory.create(clazz);
-                BestsignBean bean = new BestsignBean();
+                BodhiBean bean = new BodhiBean();
                 bean.setName(clazz.getName());
                 bean.setProxy(proxyObj);
                 bean.setAlias(alias);

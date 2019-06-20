@@ -1,7 +1,7 @@
 package org.github.bodhi.hybird.platform.loader;
 
 
-import org.github.bodhi.hybrid.context.config.BestsignPackage;
+import org.github.bodhi.hybrid.context.config.BodhiPackage;
 import org.github.bodhi.hybrid.context.config.ClassPathConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,7 +14,7 @@ import java.util.List;
 
 
 /**
- * @program: bestsign-distributed
+ * @program: bodhi-distributed
  * @description:
  * @author: Maxxx.Yg
  * @create: 2019-03-11 09:39
@@ -40,8 +40,8 @@ public class ClassLoaderFactory {
 
         List<Path> paths = new ArrayList<>();
         // lib/common ,lib/extends 默认全部加载
-        for(BestsignPackage bestsignPackage : config.getPackages()){
-            paths.add(builder.create(bestsignPackage.getPath()));
+        for(BodhiPackage bodhiPackage : config.getPackages()){
+            paths.add(builder.create(bodhiPackage.getPath()));
         }
 
         if (paths!=null && paths.size()>0){

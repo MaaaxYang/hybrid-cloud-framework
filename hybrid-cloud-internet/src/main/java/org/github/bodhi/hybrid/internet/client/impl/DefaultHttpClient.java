@@ -4,14 +4,14 @@ import org.github.bodhi.hybrid.internet.config.ClientConfig;
 import org.github.bodhi.hybrid.internet.enums.HttpMethod;
 import org.github.bodhi.hybrid.internet.config.RemoteConfigure;
 import org.github.bodhi.hybrid.internet.config.OKHttpConfigure;
-import org.github.bodhi.hybrid.norms.exception.BestsignException;
+import org.github.bodhi.hybrid.norms.exception.BodhiException;
 import org.github.bodhi.hybrid.utils.StringUtils;
 import okhttp3.*;
 
 import java.util.Map;
 
 /**
- * @program: bestsign-distributed
+ * @program: bodhi-distributed
  * @description:
  * @author: Maxxx.Yg
  * @create: 2019-03-07 10:06
@@ -52,7 +52,7 @@ public class DefaultHttpClient extends AbstractHttpClient {
         }else if(HttpMethod.DELETE.equals(request.getHttpMethod())){
             builder.delete(RequestBody.create(postMediaType,request.getBody()));
         }else {
-            throw new BestsignException("Http method only support get or post");
+            throw new BodhiException("Http method only support get or post");
         }
 
 

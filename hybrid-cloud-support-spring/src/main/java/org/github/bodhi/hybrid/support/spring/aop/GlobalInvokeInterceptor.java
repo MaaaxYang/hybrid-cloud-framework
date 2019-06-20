@@ -3,7 +3,7 @@ package org.github.bodhi.hybrid.support.spring.aop;
 import org.github.bodhi.hybrid.application.adapter.BizException;
 import org.github.bodhi.hybrid.context.logs.LogEntity;
 import org.github.bodhi.hybrid.context.logs.LogHolder;
-import org.github.bodhi.hybrid.norms.exception.BestsignException;
+import org.github.bodhi.hybrid.norms.exception.BodhiException;
 import org.github.bodhi.hybrid.norms.exception.ExceptionLevel;
 import org.github.bodhi.hybrid.norms.exception.StandardCode;
 import org.github.bodhi.hybrid.norms.base.ApiResult;
@@ -42,15 +42,15 @@ public class GlobalInvokeInterceptor implements MethodInterceptor {
 
             obj = ApiResult.error(bizException.getCode(),bizException.getMessage());
             logger.error("biz exception",bizException);
-        }catch (BestsignException bestsignException){
+        }catch (BodhiException bodhiException){
             LogEntity logEntity = LogHolder.get();
             logEntity.setStatus(StandardCode.ERROR.getCode());
             logEntity.setResult("BizError");
-            logEntity.setMsg(bestsignException.getMessage());
-            logEntity.setLevel(bestsignException.getLevel());
+            logEntity.setMsg(bodhiException.getMessage());
+            logEntity.setLevel(bodhiException.getLevel());
 
-            obj = ApiResult.error(StandardCode.ERROR.getCode(),bestsignException.getMessage());
-            logger.error("bestsign exception",bestsignException);
+            obj = ApiResult.error(StandardCode.ERROR.getCode(), bodhiException.getMessage());
+            logger.error("bodhi exception", bodhiException);
         }catch (Throwable e){
             LogEntity logEntity = LogHolder.get();
             logEntity.setResult("BizError");

@@ -5,7 +5,7 @@ import org.github.bodhi.hybrid.context.enums.JsonSerializerType;
 import org.github.bodhi.hybrid.utils.condition.LoadCondition;
 
 /**
- * @program: bestsign-distributed
+ * @program: bodhi-distributed
  * @description:
  * @author: Maxxx.Yg
  * @create: 2019-03-09 12:12

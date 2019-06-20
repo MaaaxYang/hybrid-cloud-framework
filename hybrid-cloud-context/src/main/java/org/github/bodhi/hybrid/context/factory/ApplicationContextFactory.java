@@ -1,7 +1,7 @@
 package org.github.bodhi.hybrid.context.factory;
 
 import org.github.bodhi.hybrid.context.AbstractApplicationContext;
-import org.github.bodhi.hybrid.context.config.BestsignConfig;
+import org.github.bodhi.hybrid.context.config.BodhiConfig;
 import org.github.bodhi.hybrid.norms.ApplicationContext;
 import org.github.bodhi.hybrid.norms.event.BestsignEventPublisher;
 import org.github.bodhi.hybrid.norms.serializers.Serializer;
@@ -10,14 +10,14 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.concurrent.ExecutorService;
 
 /**
- * @program: bestsign-distributed
+ * @program: bodhi-distributed
  * @description:
  * @author: Maxxx.Yg
  * @create: 2019-03-13 16:14
  **/
 public class ApplicationContextFactory {
 
-    private BestsignConfig config;
+    private BodhiConfig config;
 
     private ClassLoader loader;
 
@@ -27,7 +27,7 @@ public class ApplicationContextFactory {
 
     private Serializer serializer;
 
-    public ApplicationContextFactory(BestsignConfig config, ClassLoader loader, ExecutorService executor, BestsignEventPublisher publisher, Serializer serializer) {
+    public ApplicationContextFactory(BodhiConfig config, ClassLoader loader, ExecutorService executor, BestsignEventPublisher publisher, Serializer serializer) {
         this.config = config;
         this.loader = loader;
         this.executor = executor;
@@ -39,7 +39,7 @@ public class ApplicationContextFactory {
 
         try {
 
-            AbstractApplicationContext context = (AbstractApplicationContext)clazz.getConstructor(BestsignConfig.class).newInstance(config);
+            AbstractApplicationContext context = (AbstractApplicationContext)clazz.getConstructor(BodhiConfig.class).newInstance(config);
 
             context.setClassloader(loader);
             context.setExecutor(executor);

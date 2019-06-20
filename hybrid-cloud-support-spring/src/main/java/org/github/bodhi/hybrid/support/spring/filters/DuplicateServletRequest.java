@@ -1,6 +1,6 @@
 package org.github.bodhi.hybrid.support.spring.filters;
 
-import org.github.bodhi.hybrid.norms.exception.BestsignException;
+import org.github.bodhi.hybrid.norms.exception.BodhiException;
 import org.apache.commons.io.IOUtils;
 
 import javax.servlet.ReadListener;
@@ -30,7 +30,7 @@ public class DuplicateServletRequest extends HttpServletRequestWrapper {
         try(InputStream inputStream = request.getInputStream()){
             body = IOUtils.toByteArray(inputStream);
         }catch (Exception e){
-            throw new BestsignException(e);
+            throw new BodhiException(e);
         }
     }
 
