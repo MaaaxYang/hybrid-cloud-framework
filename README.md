@@ -117,7 +117,7 @@
 基于ClassLoader的双亲委派模型的加载机制，不同的ClassLoader加载的类是不同的，根据这个特性服务启动后==PlatformManager==会创建一个指定目录==的BodhiClassLoader==，通过这个==BodhiClassloader==使用Java原生的SPI机制将指定接口的实现类加载到==ApplicaitonContext==容器中，然后经过初始化拦截器对这些==BodhiApplication==进行再加工，子类继承重写init（）实现各自容器的功能增强。
 
 ##### Part 2: 刷新
-根据指定Version与baesPath去PathMenu枚举定义的路径下查找可使用的jar包，默认约定路径为 ==./bestsign/version/ver_number/xxxxxx.jar== 例如： ==./bestsign/version/1.0.0/demo-application.jar== 如果版本号为空则默认加载最新版本；创建一个新的Classloader，这个Classloader指向了新的文件路径，使用新的Classloader创建一个新的ApplicationContext容器，然后使用新的容器替换掉旧的容器，由于在替换中会有一部分正在允许的线程，所以旧的容器延迟回收关闭；
+根据指定Version与baesPath去PathMenu枚举定义的路径下查找可使用的jar包，默认约定路径为 ==./bodhi/version/ver_number/xxxxxx.jar== 例如： ==./bodhi/version/1.0.0/demo-application.jar== 如果版本号为空则默认加载最新版本；创建一个新的Classloader，这个Classloader指向了新的文件路径，使用新的Classloader创建一个新的ApplicationContext容器，然后使用新的容器替换掉旧的容器，由于在替换中会有一部分正在允许的线程，所以旧的容器延迟回收关闭；
 
 
 ##### Part 3 : 路由
@@ -219,10 +219,10 @@ public final class ApplicationMenu {
 }
 ```
 
-4. 在META-INF/services/目录下创建一个文件，文件名：==cn.bestsign.bodhi.hybrid.norms.BodhiApplication==这个就是BodhiApplication类的全名称，文件里面的内容是这个接口的实现类全名称
+4. 在META-INF/services/目录下创建一个文件，文件名：==cn.bodhi.bodhi.hybrid.norms.BodhiApplication==这个就是BodhiApplication类的全名称，文件里面的内容是这个接口的实现类全名称
 
 ```
-cn.bestsign.bodhi.hybrid.samples.application.business.impl.DemoApplicationImpl
+cn.bodhi.bodhi.hybrid.samples.application.business.impl.DemoApplicationImpl
 ```
 
 ---
@@ -283,10 +283,10 @@ public class DemoController implements BodhiApi{
 
 ```
 
-2. 在META-INF/services/目录下创建一个文件文件名：==cn.bestsign.bodhi.hybrid.norms.BodhiApi==这个就是BodhiApi接口的全名称，在文件里面写入上面的Controller的全名称
+2. 在META-INF/services/目录下创建一个文件文件名：==cn.bodhi.bodhi.hybrid.norms.BodhiApi==这个就是BodhiApi接口的全名称，在文件里面写入上面的Controller的全名称
 
 ```
-cn.bestsign.bodhi.hybrid.samples.client.DemoController
+cn.bodhi.bodhi.hybrid.samples.client.DemoController
 ```
 
 ---
@@ -316,7 +316,7 @@ public class Application {
 2. 配置文件：
 
 ```
-bestsign:
+bodhi:
   # 用于指定加载版本
   version: 1.0.0 
   client:
