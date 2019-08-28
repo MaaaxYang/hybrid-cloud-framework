@@ -14,19 +14,19 @@
 ```hybrid-cloud-norms 约定了框架的使用规范，根据约定上层框架实现具体功能```  
 
 **主要规范**：
-- BestsignApplication ：应用标识接口
-- BestsignApi ：开放Api标识接口
+- BodhiApplication ：应用标识接口
+- BodhiApi ：开放Api标识接口
 - ApplicationContext ：应用容器标准接口
-- BestsignBean ：容器存放的对象类型
+- BodhiBean ：容器存放的对象类型
 - LifeCycle ：生命周期约定
-- @BestsignProvider ：应用层注入标识
+- @BodhiProvider ：应用层注入标识
 - Serializer ：序列化约定
-- BestsignEvent ：事件约定
-- BestsignListener ：监听约定
-- BestsignEventPublisher ：事件发布
-- BestsignValidator ：校验器约定
+- BodhiEvent ：事件约定
+- BodhiListener ：监听约定
+- BodhiEventPublisher ：事件发布
+- BodhiValidator ：校验器约定
 - ValidatorActuator ：校验链执行器
-- BestsignException ：标准错误
+- BodhiException ：标准错误
 
 ---
 
@@ -78,17 +78,17 @@
 ##### hybrid-cloud-adapter : 「核心适配」
 ``` hybrid-cloud-adapter用于处理底层各模块之间的依赖关系，简化上层应用的使用 ```
 
-- AbstractBestsignApplication ： 向上提供简单的Application抽象类，基础该类的子类可以简单使用client api
+- AbstractBodhiApplication ： 向上提供简单的Application抽象类，基础该类的子类可以简单使用client api
 - ApplicationHelper ：提供便捷的Applicaiton获取支持
 - ConfigHelper ： 提供全局配置的便捷获取支持
-- BestsignBootstrap ：提供便捷的平台启动支持
+- BodhiBootstrap ：提供便捷的平台启动支持
 
 ---
 
 ##### hybrid-cloud-support-spring ：「Spring支持」 
 ```hybrid-cloud-support-spring 提供自动配置、路由自动化注册功能，以及标准输出定义 ```
 - ApiResult ： 标准返回格式定义
-- BestsignApplicationContextInitializer ：spring-boot启动容器初始化事件
+- BodhiApplicationContextInitializer ：spring-boot启动容器初始化事件
 - BootstrapAutoConfiguration ：自动配置实现
 - MappingHelper ：RequestMappingInfo生成工具类
 - WebApplicationContext ：继承RelayApplicationContext 用于路由注册，Spring容器BeanDefine注册
@@ -114,7 +114,7 @@
 
 #### 原理：   
 ##### Part 1：加载  
-基于ClassLoader的双亲委派模型的加载机制，不同的ClassLoader加载的类是不同的，根据这个特性服务启动后==PlatformManager==会创建一个指定目录==的BestsignClassLoader==，通过这个==BestsignClassloader==使用Java原生的SPI机制将指定接口的实现类加载到==ApplicaitonContext==容器中，然后经过初始化拦截器对这些==BestsignApplication==进行再加工，子类继承重写init（）实现各自容器的功能增强。
+基于ClassLoader的双亲委派模型的加载机制，不同的ClassLoader加载的类是不同的，根据这个特性服务启动后==PlatformManager==会创建一个指定目录==的BodhiClassLoader==，通过这个==BodhiClassloader==使用Java原生的SPI机制将指定接口的实现类加载到==ApplicaitonContext==容器中，然后经过初始化拦截器对这些==BodhiApplication==进行再加工，子类继承重写init（）实现各自容器的功能增强。
 
 ##### Part 2: 刷新
 根据指定Version与baesPath去PathMenu枚举定义的路径下查找可使用的jar包，默认约定路径为 ==./bestsign/version/ver_number/xxxxxx.jar== 例如： ==./bestsign/version/1.0.0/demo-application.jar== 如果版本号为空则默认加载最新版本；创建一个新的Classloader，这个Classloader指向了新的文件路径，使用新的Classloader创建一个新的ApplicationContext容器，然后使用新的容器替换掉旧的容器，由于在替换中会有一部分正在允许的线程，所以旧的容器延迟回收关闭；
@@ -133,11 +133,11 @@
 ```
 /**
  * @program: hybrid-cloud-framework
- * @description: 有 @BestsignProvider 注解的接口实现类才会被容器管理并刷新，没有就是一个普通接口无法热加载
+ * @description: 有 @BodhiProvider 注解的接口实现类才会被容器管理并刷新，没有就是一个普通接口无法热加载
  * @author: Maxxx.Yg
  * @create: 2019-03-18 16:38
  **/
-@BestsignProvider
+@BodhiProvider
 public interface DemoApplication {
 
     void voidAction();
@@ -157,11 +157,11 @@ public interface DemoApplication {
 ```
 /**
  * @program: hybrid-cloud-framework
- * @description: 需要继承 AbstractBestsignApplication 类 ，或者自己实现 BestsignApplication 接口
+ * @description: 需要继承 AbstractBodhiApplication 类 ，或者自己实现 BodhiApplication 接口
  * @author: Maxxx.Yg
  * @create: 2019-03-18 16:38
  **/
-public class DemoApplicationImpl extends AbstractBestsignApplication implements DemoApplication,OtherApplication {
+public class DemoApplicationImpl extends AbstractBodhiApplication implements DemoApplication,OtherApplication {
 
     @Override
     public void voidAction() {
@@ -219,7 +219,7 @@ public final class ApplicationMenu {
 }
 ```
 
-4. 在META-INF/services/目录下创建一个文件，文件名：==cn.bestsign.bodhi.hybrid.norms.BestsignApplication==这个就是BestsignApplication类的全名称，文件里面的内容是这个接口的实现类全名称
+4. 在META-INF/services/目录下创建一个文件，文件名：==cn.bestsign.bodhi.hybrid.norms.BodhiApplication==这个就是BodhiApplication类的全名称，文件里面的内容是这个接口的实现类全名称
 
 ```
 cn.bestsign.bodhi.hybrid.samples.application.business.impl.DemoApplicationImpl
@@ -230,7 +230,7 @@ cn.bestsign.bodhi.hybrid.samples.application.business.impl.DemoApplicationImpl
 #### Web Client部分：
 > 需要依赖hybrid-cloud-client-starter
 
-1. 写一个Controller，这个Controller要实现BestsignApi接口
+1. 写一个Controller，这个Controller要实现BodhiApi接口
 
 ```
 /**
@@ -241,7 +241,7 @@ cn.bestsign.bodhi.hybrid.samples.application.business.impl.DemoApplicationImpl
  **/
 @RestController
 @RequestMapping("/demo")
-public class DemoController implements BestsignApi{
+public class DemoController implements BodhiApi{
 
     @GetMapping("/void")
     public void voidAction() {
@@ -283,7 +283,7 @@ public class DemoController implements BestsignApi{
 
 ```
 
-2. 在META-INF/services/目录下创建一个文件文件名：==cn.bestsign.bodhi.hybrid.norms.BestsignApi==这个就是BestsignApi接口的全名称，在文件里面写入上面的Controller的全名称
+2. 在META-INF/services/目录下创建一个文件文件名：==cn.bestsign.bodhi.hybrid.norms.BodhiApi==这个就是BodhiApi接口的全名称，在文件里面写入上面的Controller的全名称
 
 ```
 cn.bestsign.bodhi.hybrid.samples.client.DemoController
@@ -332,8 +332,8 @@ bestsign:
 这个项目设计的初衷是为了做到PAAS服务的效果。
 即：在远程的客户端运行一个空壳项目，然后项目启动后从远程服务器获取可执行代码文件，然后在本地服务进行加载。
 
-项目设想：https://www.processon.com/view/link/5c7bdfc2e4b043f594cfb4e9
-项目结构：https://www.processon.com/view/link/5c8a277ee4b0d1a5b0fe577d
+- 项目设想：https://www.processon.com/view/link/5c7bdfc2e4b043f594cfb4e9
+- 项目结构：https://www.processon.com/view/link/5c8a277ee4b0d1a5b0fe577d
 
 不想将这个耗费了大量心血的项目埋没到硬盘中丢掉，分享给大家。
 
