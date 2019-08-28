@@ -7,8 +7,7 @@
 ---
 
 ### 结构介绍
-![hybrid-cloud-framework（bodhi） (4).jpg](http://note.youdao.com/yws/res/5009/WEBRESOURCE189a1c946ff4196a5c8c86455d518e0d)
-
+https://www.processon.com/view/link/5c8a277ee4b0d1a5b0fe577d
 
 ##### hybrid-cloud-norms:「标准规范」
 ```hybrid-cloud-norms 约定了框架的使用规范，根据约定上层框架实现具体功能```  
